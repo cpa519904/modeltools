@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/golang/protobuf/protoc-gen-go/generator"
 	"io"
-	"modeltools/dbtools"
+	"github.com/cpa519904/modeltools/dbtools"
 	"os"
 	"strings"
 )
