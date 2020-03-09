@@ -1,11 +1,13 @@
 package conf
 
 // model保存路径
-const ModelPath = "./models/"
+var ModelPath = "./models/"
+
 // 是否覆盖已存在model
-const ModelReplace = true
+var ModelReplace = true
+
 // 数据库驱动
-const DriverName = "mysql"
+var DriverName = "mysql"
 
 type DbConf struct {
 	Host   string
@@ -14,6 +16,7 @@ type DbConf struct {
 	Pwd    string
 	DbName string
 }
+
 // 数据库链接配置
 var MasterDbConfig DbConf = DbConf{
 	Host:   "127.0.0.1",
