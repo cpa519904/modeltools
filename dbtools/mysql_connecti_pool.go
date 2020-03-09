@@ -2,7 +2,7 @@ package dbtools
 
 import (
 	"fmt"
-	"github.com/cpa519904/modeltools/dbtools/conf"
+	"github.com/cpa519904/modeltools/conf"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"log"
