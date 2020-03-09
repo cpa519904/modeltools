@@ -1,8 +1,8 @@
 package generate
 
 import (
-	"../dbtools"
 	"fmt"
+	"github.com/cpa519904/modeltools/dbtools/dbtools"
 	"github.com/golang/protobuf/protoc-gen-go/generator"
 	"io"
 	"os"
