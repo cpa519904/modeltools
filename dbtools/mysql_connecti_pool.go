@@ -1,11 +1,11 @@
 package dbtools
 
 import (
+	"../conf"
 	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"log"
-	"github.com/cpa519904/modeltools/conf"
 	"sync"
 )
 
