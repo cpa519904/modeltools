@@ -9,6 +9,10 @@ import (
 	"os"
 	"strings"
 )
+// 表名称 与model相对应 多个,隔开
+var tableGenerateNames=""
+// 表 对应 model 名称 与表名相对应 多个,隔开
+var modelGenerateNames=""
 
 func Genertate(tableNames ...string) {
 	tableNamesStr := ""
@@ -18,10 +22,30 @@ func Genertate(tableNames ...string) {
 		}
 		tableNamesStr += "'" + name + "'"
 	}
+	if(len(tableNamesStr)==0){
+		if(len(tableGenerateNames)>0){
+			tableNames := strings.Split(tableGenerateNames, ",")
+		    for _, name := range tableNames {
+				if tableNamesStr != "" {
+					tableNamesStr += ","
+				}
+				tableNamesStr += "'" + name + "'"
+			}
+		}
+
+
+
+	}
+	conf.GenertateModelNames()
 	tables := getTables(tableNamesStr) //生成所有表信息
 	//tables := getTables("admin_info","video_info") //生成指定表信息，可变参数可传入过个表名
-	for _, table := range tables {
+	tableMdel := strings.Split(modelGenerateNames, ",")
+	for i, table := range tables {
 		fields := getFields(table.Name)
+		if(len(tableMdel)>0){
+			tableMdelBase := tableMdel[i]
+			table.ModelName=tableMdelBase
+		}
 		generateModel(table, fields)
 	}
 }
@@ -53,7 +77,12 @@ func generateModel(table Table, fields []Field) {
 	if len(table.Comment) > 0 {
 		content += "// " + table.Comment + "\n"
 	}
-	content += "type " + generator.CamelCase(table.Name) + " struct {\n"
+	if(len(table.ModelName)==0){
+		content += "type " + generator.CamelCase(table.Name) + " struct {\n"
+	}else{
+		content += "type " + table.ModelName + " struct {\n"
+	}
+
 	//生成字段
 	for _, field := range fields {
 		fieldName := generator.CamelCase(field.Field)
