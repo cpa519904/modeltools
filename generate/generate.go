@@ -2,10 +2,10 @@ package generate
 
 import (
 	"fmt"
-	"github.com/cpa519904/modeltools/conf"
-	"github.com/cpa519904/modeltools/dbtools"
 	"github.com/golang/protobuf/protoc-gen-go/generator"
 	"io"
+	"modeltools/conf"
+	"modeltools/dbtools"
 	"os"
 	"strings"
 )
@@ -42,6 +42,7 @@ func Genertate(tableNames ...string) {
 	for i, table := range tables {
 		fields := getFields(table.Name)
 		if len(tableMdel) > 0 {
+			//index:=(i+1)
 			tableMdelBase := tableMdel[i]
 			table.ModelName = tableMdelBase
 		}
@@ -93,6 +94,9 @@ func generateModel(table Table, fields []Field) {
 	content += "}"
 
 	filename := conf.ModelPath + generator.CamelCase(table.Name) + ".go"
+	if len(table.ModelName) > 0 {
+		filename = conf.ModelPath + table.ModelName + ".go"
+	}
 	var f *os.File
 	var err error
 	if checkFileIsExist(filename) {
@@ -115,7 +119,12 @@ func generateModel(table Table, fields []Field) {
 	if err != nil {
 		panic(err)
 	} else {
-		fmt.Println(generator.CamelCase(table.Name) + " 已生成...")
+		if len(table.ModelName) > 0 {
+			fmt.Println(table.ModelName + " 已生成...")
+		} else {
+			fmt.Println(generator.CamelCase(table.Name) + " 已生成...")
+		}
+
 	}
 }
 
