@@ -2,6 +2,7 @@ package generate
 
 import (
 	"fmt"
+	"github.com/cpa519904/modeltools/conf"
 	"github.com/cpa519904/modeltools/dbtools"
 	"github.com/golang/protobuf/protoc-gen-go/generator"
 	"io"
