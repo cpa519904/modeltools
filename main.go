@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/cpa519904/modeltools/conf"
-	"github.com/cpa519904/modeltools/dbtools"
-	"github.com/cpa519904/modeltools/generate"
+	"modeltools/conf"
+	"modeltools/dbtools"
+	"modeltools/generate"
 )
 
 func main() {
