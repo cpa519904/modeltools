@@ -63,10 +63,23 @@ import (
 
 
 func main() {
+	conf.ModelPath="./models/"
+	// 是否覆盖已存在model
+	//conf.ModelReplace=""
+	// 数据库驱动
+	conf.MasterDbConfig.Host = "127.0.0.1"
+	conf.MasterDbConfig.Port = "3306"
+	conf.MasterDbConfig.User = "root"
+	conf.MasterDbConfig.Pwd = "1234"
+	conf.MasterDbConfig.DbName = "demo"
 	//初始化数据库
 	dbtools.Init()
-	//generate.Genertate() //生成所有表信息
-	generate.Genertate("admin_info","video_info") //生成指定表信息，可变参数可传入多个表名
+	// 表名
+	generate.TableGenerateNames="xxx"
+	// 表对应实体名 model
+	generate.ModelGenerateNames="xxxModel"
+	generate.Genertate() //生成所有表信息
+	//generate.Genertate("admin_info", "video_info") //生成指定表信息，可变参数可传入多个表名
 }
 
 
